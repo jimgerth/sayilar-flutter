@@ -1,0 +1,37 @@
+name: flutter
+
+# Run this workflow on pull requests targeting the master branch,
+# but also allow for triggering this workflow manually.
+on:
+  pull_request:
+    branches:
+    - master
+
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '19.x'
+
+    - uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+
+    # Log the flutter version used for this job.
+    - run: flutter --version
+    
+    # Get the flutter dependencies.
+    - run: flutter pub get
+    
+    # Check for any formatting issues in the code.
+    - run: flutter format --set-exit-if-changed .
+    
+    # Statically analyze the dart code for any errors.
+    - run: flutter analyze
