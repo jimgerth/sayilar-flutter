@@ -1,5 +1,8 @@
 name: sayilar
-description: A new Flutter project.
+description: An app with simple exercises for practicing turkish numbers.
+homepage: https://github.com/JimGerth/sayilar-flutter
+repository: https://github.com/JimGerth/sayilar-flutter
+issue_tracker: https://github.com/JimGerth/sayilar-flutter/issues
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
