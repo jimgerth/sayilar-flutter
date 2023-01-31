@@ -7,7 +7,7 @@ extension WrittenOut on int {
   /// The name for the number zero IN TURKISH.
   static const String _zero = 'sıfır';
 
-  /// The names of the unit digits (1-9) IN TURKISH.
+  /// The names of the unit digits `(1-9)` IN TURKISH.
   static const List<String> _digits = [
     'bir',
     'iki',
@@ -20,7 +20,7 @@ extension WrittenOut on int {
     'dokuz',
   ];
 
-  /// The names of the digit multiples of ten (10-90) IN TURKISH.
+  /// The names of the digit multiples of ten `(10-90)` IN TURKISH.
   static const List<String> _tengits = [
     'on',
     'yirmi',
@@ -36,7 +36,7 @@ extension WrittenOut on int {
   /// The name for the number hundred IN TURKISH.
   static const String _hundred = 'yüz';
 
-  /// The names for the first few orders of magnitude (10^3-10^15) IN TURKISH.
+  /// The names of the first 5 orders of magnitude `(10^3-10^15)` IN TURKISH.
   static const List<String> _ordersOfMagnitude = [
     'bin',
     'milyon',
