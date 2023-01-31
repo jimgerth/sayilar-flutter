@@ -7,7 +7,7 @@ extension WrittenOut on int {
   /// The name for the number zero IN TURKISH.
   static const String _zero = 'sıfır';
 
-  /// The names of the unit digits (0-9) IN TURKISH.
+  /// The names of the unit digits (1-9) IN TURKISH.
   static const List<String> _digits = [
     'bir',
     'iki',
