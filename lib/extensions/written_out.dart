@@ -182,7 +182,7 @@ extension WrittenOut on int {
   /// Return the full length written out name for this number *in turkish*.
   ///
   /// This ignores the sign of the number.
-  String? get writtenOut => _blocksToWord(
+  String get writtenOut => _blocksToWord(
         digits.group(
           3,
           start: GroupingStart.end,
