@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:collection/collection.dart';
+
 import 'package:sayilar/extensions/digits.dart';
 import 'package:sayilar/extensions/group.dart';
 import 'package:sayilar/extensions/maybe_only.dart';
@@ -106,7 +110,7 @@ extension WrittenOut on int {
   /// the number. For example `1234` must be `[[0, 0, 1], [2, 3, 4]]`. Notice
   /// that the first block might need to be padded with zeros to be of the right
   /// length.
-  static String? _blocksToWord(List<List<int>> blocks) {
+  static String _blocksToWord(List<List<int>> blocks) {
     assert(
       blocks.any((block) => block.length == 3),
       'Each block in the passed in blocks must contain exactly 3 elements.',
@@ -118,6 +122,12 @@ extension WrittenOut on int {
         ),
       ),
       'Each element in each block must be a digit, i.e. in the range of [0-9].',
+    );
+    assert(
+      blocks.length - 1 <= _ordersOfMagnitude.length,
+      'Your number is too big. The maximum is number that can be written out '
+      'is ${(pow(10, (_ordersOfMagnitude.length + 1) * 3) - 1).toInt()}. See '
+      'the NumberTooBigException class for more information.',
     );
 
     // Get the corresponding words for each block in the given blocks.
@@ -156,8 +166,12 @@ extension WrittenOut on int {
       );
     } on RangeError catch (_) {
       // Catch the error that occurs, when the given number is so big, that
-      // there aren't any names for its orders of magnitude anymore.
-      return null;
+      // there aren't any names for its orders of magnitude anymore, and throw a
+      // custom exception with more information.
+      throw NumberTooBigException(
+        number: int.parse(blocks.flattened.join('')),
+        limit: (pow(10, (_ordersOfMagnitude.length + 1) * 3) - 1).toInt(),
+      );
     }
 
     // Return the now filled words making up the written out name for the given
