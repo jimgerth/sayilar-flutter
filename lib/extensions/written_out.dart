@@ -33,7 +33,7 @@ extension WrittenOut on int {
     'doksan',
   ];
 
-  // The name for the number hundred IN TURKISH.
+  /// The name for the number hundred IN TURKISH.
   static const String _hundred = 'yüz';
 
   /// The names for the first few orders of magnitude (10^3-10^15) IN TURKISH.
