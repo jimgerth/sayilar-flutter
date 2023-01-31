@@ -1,13 +1,44 @@
+import 'dart:math';
+
+import 'package:collection/collection.dart';
+
 import 'package:sayilar/extensions/digits.dart';
 import 'package:sayilar/extensions/group.dart';
 import 'package:sayilar/extensions/maybe_only.dart';
 
-/// An extension to get the written out name for a number IN TURKISH.
+/// An [Exception] for when a [number] is too big to be [WrittenOut].
+///
+/// This is a custom [Exception] that can be thrown by the [WrittenOut]
+/// extension when a given [number] is too big. This stems from the fact, that
+/// there are only a limited amount of words available to the [WrittenOut]
+/// extension to name big numbers. For example it might have the words for a
+/// million and a billion, but not for a trillion. The specific [limit] depends
+/// on the current implementation though.
+class NumberTooBigException implements Exception {
+  /// Create a new [NumberTooBigException].
+  const NumberTooBigException({
+    required this.number,
+    required this.limit,
+  });
+
+  /// The number that was too big to be written out.
+  final int number;
+
+  /// The biggest possible number that can still be written out.
+  final int limit;
+
+  @override
+  String toString() =>
+      'The given number $number is too big to be written out. The biggest '
+      'number currently supported to be written out is $limit.';
+}
+
+/// An extension to get the written out name for a number *in turkish*.
 extension WrittenOut on int {
-  /// The name for the number zero IN TURKISH.
+  /// The name for the number zero *in turkish*.
   static const String _zero = 'sıfır';
 
-  /// The names of the unit digits (0-9) IN TURKISH.
+  /// The names of the unit digits `(1-9)` *in turkish*.
   static const List<String> _digits = [
     'bir',
     'iki',
@@ -20,7 +51,7 @@ extension WrittenOut on int {
     'dokuz',
   ];
 
-  /// The names of the digit multiples of ten (10-90) IN TURKISH.
+  /// The names of the digit multiples of ten `(10-90)` *in turkish*.
   static const List<String> _tengits = [
     'on',
     'yirmi',
@@ -33,10 +64,10 @@ extension WrittenOut on int {
     'doksan',
   ];
 
-  // The name for the number hundred IN TURKISH.
+  /// The name for the number hundred *in turkish*.
   static const String _hundred = 'yüz';
 
-  /// The names for the first few orders of magnitude (10^3-10^15) IN TURKISH.
+  /// The names of the first 5 orders of magnitude `(10^3-10^15)` *in turkish*.
   static const List<String> _ordersOfMagnitude = [
     'bin',
     'milyon',
@@ -45,7 +76,7 @@ extension WrittenOut on int {
     'katrilyon',
   ];
 
-  /// Return the words making up the name for a three digit number IN TURKISH.
+  /// Return the words making up the name for a three digit number *in turkish*.
   ///
   /// The three digit number must be passed in as a list of the digits of that
   /// number (a [block]). The list must be of length `3`, with the leading
@@ -72,14 +103,14 @@ extension WrittenOut on int {
     ];
   }
 
-  /// Return the written out name for a number grouped into blocks IN TURKISH.
+  /// Return the written out name for a number grouped into blocks *in turkish*.
   ///
   /// The number must be passed in as a list of the digits of that number,
   /// grouped into [blocks] (i.e. sublists) of size `3`, starting at the end of
   /// the number. For example `1234` must be `[[0, 0, 1], [2, 3, 4]]`. Notice
   /// that the first block might need to be padded with zeros to be of the right
   /// length.
-  static String? _blocksToWord(List<List<int>> blocks) {
+  static String _blocksToWord(List<List<int>> blocks) {
     assert(
       blocks.any((block) => block.length == 3),
       'Each block in the passed in blocks must contain exactly 3 elements.',
@@ -91,6 +122,12 @@ extension WrittenOut on int {
         ),
       ),
       'Each element in each block must be a digit, i.e. in the range of [0-9].',
+    );
+    assert(
+      blocks.length - 1 <= _ordersOfMagnitude.length,
+      'Your number is too big. The maximum is number that can be written out '
+      'is ${(pow(10, (_ordersOfMagnitude.length + 1) * 3) - 1).toInt()}. See '
+      'the NumberTooBigException class for more information.',
     );
 
     // Get the corresponding words for each block in the given blocks.
@@ -129,8 +166,12 @@ extension WrittenOut on int {
       );
     } on RangeError catch (_) {
       // Catch the error that occurs, when the given number is so big, that
-      // there aren't any names for its orders of magnitude anymore.
-      return null;
+      // there aren't any names for its orders of magnitude anymore, and throw a
+      // custom exception with more information.
+      throw NumberTooBigException(
+        number: int.parse(blocks.flattened.join('')),
+        limit: (pow(10, (_ordersOfMagnitude.length + 1) * 3) - 1).toInt(),
+      );
     }
 
     // Return the now filled words making up the written out name for the given
@@ -138,10 +179,10 @@ extension WrittenOut on int {
     return words.join(' ');
   }
 
-  /// Return the full length written out name for this number IN TURKISH.
+  /// Return the full length written out name for this number *in turkish*.
   ///
   /// This ignores the sign of the number.
-  String? get writtenOut => _blocksToWord(
+  String get writtenOut => _blocksToWord(
         digits.group(
           3,
           start: GroupingStart.end,
