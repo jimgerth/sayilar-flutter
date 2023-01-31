@@ -2,12 +2,12 @@ import 'package:sayilar/extensions/digits.dart';
 import 'package:sayilar/extensions/group.dart';
 import 'package:sayilar/extensions/maybe_only.dart';
 
-/// An extension to get the written out name for a number IN TURKISH.
+/// An extension to get the written out name for a number *in turkish*.
 extension WrittenOut on int {
-  /// The name for the number zero IN TURKISH.
+  /// The name for the number zero *in turkish*.
   static const String _zero = 'sıfır';
 
-  /// The names of the unit digits `(1-9)` IN TURKISH.
+  /// The names of the unit digits `(1-9)` *in turkish*.
   static const List<String> _digits = [
     'bir',
     'iki',
@@ -20,7 +20,7 @@ extension WrittenOut on int {
     'dokuz',
   ];
 
-  /// The names of the digit multiples of ten `(10-90)` IN TURKISH.
+  /// The names of the digit multiples of ten `(10-90)` *in turkish*.
   static const List<String> _tengits = [
     'on',
     'yirmi',
@@ -33,10 +33,10 @@ extension WrittenOut on int {
     'doksan',
   ];
 
-  /// The name for the number hundred IN TURKISH.
+  /// The name for the number hundred *in turkish*.
   static const String _hundred = 'yüz';
 
-  /// The names of the first 5 orders of magnitude `(10^3-10^15)` IN TURKISH.
+  /// The names of the first 5 orders of magnitude `(10^3-10^15)` *in turkish*.
   static const List<String> _ordersOfMagnitude = [
     'bin',
     'milyon',
@@ -45,7 +45,7 @@ extension WrittenOut on int {
     'katrilyon',
   ];
 
-  /// Return the words making up the name for a three digit number IN TURKISH.
+  /// Return the words making up the name for a three digit number *in turkish*.
   ///
   /// The three digit number must be passed in as a list of the digits of that
   /// number (a [block]). The list must be of length `3`, with the leading
@@ -72,7 +72,7 @@ extension WrittenOut on int {
     ];
   }
 
-  /// Return the written out name for a number grouped into blocks IN TURKISH.
+  /// Return the written out name for a number grouped into blocks *in turkish*.
   ///
   /// The number must be passed in as a list of the digits of that number,
   /// grouped into [blocks] (i.e. sublists) of size `3`, starting at the end of
@@ -138,7 +138,7 @@ extension WrittenOut on int {
     return words.join(' ');
   }
 
-  /// Return the full length written out name for this number IN TURKISH.
+  /// Return the full length written out name for this number *in turkish*.
   ///
   /// This ignores the sign of the number.
   String? get writtenOut => _blocksToWord(
