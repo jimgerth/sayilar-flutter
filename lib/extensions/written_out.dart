@@ -2,6 +2,33 @@ import 'package:sayilar/extensions/digits.dart';
 import 'package:sayilar/extensions/group.dart';
 import 'package:sayilar/extensions/maybe_only.dart';
 
+/// An [Exception] for when a [number] is too big to be [WrittenOut].
+///
+/// This is a custom [Exception] that can be thrown by the [WrittenOut]
+/// extension when a given [number] is too big. This stems from the fact, that
+/// there are only a limited amount of words available to the [WrittenOut]
+/// extension to name big numbers. For example it might have the words for a
+/// million and a billion, but not for a trillion. The specific [limit] depends
+/// on the current implementation though.
+class NumberTooBigException implements Exception {
+  /// Create a new [NumberTooBigException].
+  const NumberTooBigException({
+    required this.number,
+    required this.limit,
+  });
+
+  /// The number that was too big to be written out.
+  final int number;
+
+  /// The biggest possible number that can still be written out.
+  final int limit;
+
+  @override
+  String toString() =>
+      'The given number $number is too big to be written out. The biggest '
+      'number currently supported to be written out is $limit.';
+}
+
 /// An extension to get the written out name for a number *in turkish*.
 extension WrittenOut on int {
   /// The name for the number zero *in turkish*.
