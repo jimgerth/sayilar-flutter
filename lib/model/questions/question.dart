@@ -1,6 +1,6 @@
 /// An abstract base class for textual questions to be asked the user.
 abstract class Question {
-  /// Abstract const constructor enabling const implementing class constructors.
+  /// Abstract `const` constructor enabling `const` child class constructors.
   const Question();
 
   /// A formatted [String] of the question to be shown to the user.
