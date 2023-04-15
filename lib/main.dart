@@ -8,6 +8,7 @@ void main() {
 
 /// The root widget for the Sayılar app.
 class Sayilar extends StatefulWidget {
+  /// Create a new [Sayilar] widget.
   const Sayilar({super.key});
 
   @override
