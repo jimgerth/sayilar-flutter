@@ -1,31 +1,26 @@
 import 'package:flutter/material.dart';
 
-import 'package:sayilar/extensions/written_out.dart';
+import 'package:sayilar/model/exercises/calculate_exercise.dart';
+import 'package:sayilar/model/exercises/recognize_exercise.dart';
+import 'package:sayilar/model/exercises/translate_exercise.dart';
+import 'package:sayilar/widgets/topic_selector.dart';
+import 'package:sayilar/widgets/topics/exercise_topic.dart';
 
 void main() {
   runApp(const Sayilar());
 }
 
 /// The root widget for the Sayılar app.
-class Sayilar extends StatefulWidget {
+class Sayilar extends StatelessWidget {
   /// Create a new [Sayilar] widget.
   const Sayilar({super.key});
-
-  @override
-  State<Sayilar> createState() => SayilarState();
-}
-
-/// The [State] of a [Sayilar] widget.
-class SayilarState extends State<Sayilar> {
-  /// A text to be shown to the user.
-  String output = '';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sayılar',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorSchemeSeed: Colors.blue,
         useMaterial3: true,
       ),
       home: Scaffold(
@@ -33,25 +28,27 @@ class SayilarState extends State<Sayilar> {
           title: const Text('Sayılar'),
         ),
         body: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24.0,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(output),
-                TextField(
-                  keyboardType: TextInputType.number,
-                  onChanged: (input) => setState(
-                    // When the user types in a valid number, show the written
-                    // out name for that number in turkish to the user.
-                    () => output = int.tryParse(input)?.writtenOut ?? '',
-                  ),
-                ),
-              ],
-            ),
+          child: TopicSelector(
+            topics: const [
+              ExerciseTopic(
+                icon: Icons.visibility,
+                title: 'Recognize',
+                subtitle: 'on iki → 12',
+                exercise: RecognizeExercise(),
+              ),
+              ExerciseTopic(
+                icon: Icons.edit,
+                title: 'Translate',
+                subtitle: '12 → on iki',
+                exercise: TranslateExercise(),
+              ),
+              ExerciseTopic(
+                icon: Icons.calculate,
+                title: 'Calculate',
+                subtitle: 'bir + iki = üç',
+                exercise: CalculateExercise(),
+              ),
+            ],
           ),
         ),
       ),
