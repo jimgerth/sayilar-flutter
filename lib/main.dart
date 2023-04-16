@@ -14,7 +14,7 @@ class Sayilar extends StatelessWidget {
     return MaterialApp(
       title: 'Sayılar',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorSchemeSeed: Colors.blue,
         useMaterial3: true,
       ),
       home: Scaffold(
