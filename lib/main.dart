@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:sayilar/model/exercises/calculate_exercise.dart';
+import 'package:sayilar/model/exercises/recognize_exercise.dart';
+import 'package:sayilar/model/exercises/translate_exercise.dart';
+import 'package:sayilar/widgets/topic_selector.dart';
+import 'package:sayilar/widgets/topics/exercise_topic.dart';
+
 void main() {
   runApp(const Sayilar());
 }
@@ -21,7 +27,30 @@ class Sayilar extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Sayılar'),
         ),
-        body: Container(),
+        body: Center(
+          child: TopicSelector(
+            topics: const [
+              ExerciseTopic(
+                icon: Icons.visibility,
+                title: 'Recognize',
+                subtitle: 'on iki → 12',
+                exercise: RecognizeExercise(),
+              ),
+              ExerciseTopic(
+                icon: Icons.edit,
+                title: 'Translate',
+                subtitle: '12 → on iki',
+                exercise: TranslateExercise(),
+              ),
+              ExerciseTopic(
+                icon: Icons.calculate,
+                title: 'Calculate',
+                subtitle: 'bir + iki = üç',
+                exercise: CalculateExercise(),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
