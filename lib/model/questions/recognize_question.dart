@@ -17,7 +17,7 @@ class RecognizeQuestion extends Question {
   final int number;
 
   @override
-  String get question => 'What number is ${number.writtenOut}?';
+  String get question => 'What number is *${number.writtenOut}*?';
 
   @override
   String get answer => number.toString();

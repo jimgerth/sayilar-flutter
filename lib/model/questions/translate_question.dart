@@ -17,7 +17,7 @@ class TranslateQuestion extends Question {
   final int number;
 
   @override
-  String get question => 'How do you write $number?';
+  String get question => 'How do you write *$number*?';
 
   @override
   String get answer => number.writtenOut;

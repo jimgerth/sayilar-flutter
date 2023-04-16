@@ -65,7 +65,7 @@ class CalculateQuestion extends Question {
 
   @override
   String get question =>
-      'How do you write the answer to ${a.writtenOut} $operation ${b.writtenOut}?';
+      'How do you write the answer to *${a.writtenOut} $operation ${b.writtenOut}*?';
 
   @override
   String get answer => operation.apply(a, b).writtenOut;
