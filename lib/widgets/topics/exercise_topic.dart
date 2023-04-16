@@ -180,7 +180,7 @@ class _ExerciseTopicBodyState extends State<_ExerciseTopicBody>
                         child: Text(
                           // Show the user whether their answer was correct.
                           currentQuestion.grade(answer) ? 'Correct!' : 'Wrong!',
-                        ),
+                        ).formatBold(),
                       ),
                       // Same here, mimic the snackbars default padding.
                       // NOTE: Same issue as above.
