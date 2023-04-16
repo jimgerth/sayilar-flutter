@@ -178,8 +178,11 @@ class _ExerciseTopicBodyState extends State<_ExerciseTopicBody>
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          // Show the user whether their answer was correct.
-                          currentQuestion.grade(answer) ? 'Correct!' : 'Wrong!',
+                          // Show the user whether their answer was correct or
+                          // wrong, along with the intended answer in that case.
+                          currentQuestion.grade(answer)
+                              ? 'Correct!'
+                              : 'Wrong! The correct answer is *${currentQuestion.answer}*.',
                         ).formatBold(),
                       ),
                       // Same here, mimic the snackbars default padding.
