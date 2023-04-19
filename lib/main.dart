@@ -11,10 +11,16 @@ void main() {
 }
 
 /// The root widget for the Sayılar app.
-class Sayilar extends StatelessWidget {
+class Sayilar extends StatefulWidget {
   /// Create a new [Sayilar] widget.
   const Sayilar({super.key});
 
+  @override
+  State<Sayilar> createState() => SayilarState();
+}
+
+/// The [State] of a [Sayilar] widget.
+class SayilarState extends State<Sayilar> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
