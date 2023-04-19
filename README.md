@@ -44,3 +44,15 @@ Secondly, the user has to translate and write out the answer to the calculation
 in Turkish (e.g. _"üç"_).
 Thus, this is a combination of the first two exercises, as both recognizing and
 translating are trained.
+
+
+## Run
+
+You need to have
+[`flutter` installed](https://docs.flutter.dev/get-started/install)
+to run this app by doing
+```sh
+git clone https://github.com/JimGerth/sayilar-flutter.git
+cd sayilar-flutter
+flutter run
+```
