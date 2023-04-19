@@ -3,6 +3,7 @@
 *Sayılar* (Turkish for "numbers") is an app with simple exercises for practicing
 Turkish numbers.
 
+![](example/example.gif)
 
 ## About
 
