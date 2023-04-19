@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:sayilar/extensions/format_bold.dart';
 import 'package:sayilar/model/exercises/exercise.dart';
 import 'package:sayilar/model/questions/question.dart';
 import 'package:sayilar/widgets/topics/topic.dart';
@@ -177,9 +178,12 @@ class _ExerciseTopicBodyState extends State<_ExerciseTopicBody>
                     children: <Widget>[
                       Expanded(
                         child: Text(
-                          // Show the user whether their answer was correct.
-                          currentQuestion.grade(answer) ? 'Correct!' : 'Wrong!',
-                        ),
+                          // Show the user whether their answer was correct or
+                          // wrong, along with the intended answer in that case.
+                          currentQuestion.grade(answer)
+                              ? 'Correct!'
+                              : 'Wrong! The correct answer is *${currentQuestion.answer}*.',
+                        ).formatBold(),
                       ),
                       // Same here, mimic the snackbars default padding.
                       // NOTE: Same issue as above.
@@ -249,7 +253,7 @@ class _ExerciseTopicBodyState extends State<_ExerciseTopicBody>
             child: Text(
               currentQuestion.question,
               style: Theme.of(context).textTheme.bodyLarge,
-            ),
+            ).formatBold(),
           ),
           TextField(
             enabled: inputEnabled,

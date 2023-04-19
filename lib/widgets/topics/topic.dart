@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:sayilar/extensions/format_bold.dart';
+
 /// An abstract base class for any coherent unit of browsable content.
 ///
 /// A topic describes any coherent unit of content that can be summarized in a
@@ -63,7 +65,7 @@ abstract class Topic {
                 title,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              if (subtitle != null) Text(subtitle!),
+              if (subtitle != null) Text(subtitle!).formatBold(),
             ],
           ),
         ),

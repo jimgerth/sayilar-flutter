@@ -33,19 +33,19 @@ class Sayilar extends StatelessWidget {
               ExerciseTopic(
                 icon: Icons.visibility,
                 title: 'Recognize',
-                subtitle: 'on iki → 12',
+                subtitle: 'on iki → *12*',
                 exercise: RecognizeExercise(),
               ),
               ExerciseTopic(
                 icon: Icons.edit,
                 title: 'Translate',
-                subtitle: '12 → on iki',
+                subtitle: '12 → *on iki*',
                 exercise: TranslateExercise(),
               ),
               ExerciseTopic(
                 icon: Icons.calculate,
                 title: 'Calculate',
-                subtitle: 'bir + iki = üç',
+                subtitle: 'bir + iki = *üç*',
                 exercise: CalculateExercise(),
               ),
             ],
