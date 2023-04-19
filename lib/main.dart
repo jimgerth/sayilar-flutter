@@ -66,6 +66,13 @@ class SayilarState extends State<Sayilar> {
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Sayılar'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(brightness.next.icon),
+              tooltip: brightness.next.tooltip,
+              onPressed: () => setState(() => brightness = brightness.next),
+            ),
+          ],
         ),
         body: Center(
           child: TopicSelector(
