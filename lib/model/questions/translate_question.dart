@@ -21,4 +21,9 @@ class TranslateQuestion extends Question {
 
   @override
   String get answer => number.writtenOut;
+
+  @override
+  List<String> get alternateAnswers => [
+        number.writtenOutVerbosely,
+      ];
 }

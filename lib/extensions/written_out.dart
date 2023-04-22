@@ -81,7 +81,10 @@ extension WrittenOut on int {
   /// The three digit number must be passed in as a list of the digits of that
   /// number (a [block]). The list must be of length `3`, with the leading
   /// digits being `0`, if the number is smaller than `100`.
-  static List<String> _blockToWords(List<int> block) {
+  ///
+  /// By setting [verbose] to `true`, otherwise optional words are included in
+  /// the output (e.g. the word for "one" in "one hundred ...").
+  static List<String> _blockToWords(List<int> block, [bool verbose = false]) {
     assert(
       block.length == 3,
       'The passed in block must contain exactly 3 elements.',
@@ -96,7 +99,8 @@ extension WrittenOut on int {
     return [
       // The amount of hundreds only needs to be mentioned, when there is more
       // than one (i.e. "hundred ..." is sufficient over "one hundred ...").
-      if (block[0] > 1) _digits[block[0] - 1],
+      // Always mention it when the output should be verbose, though.
+      if (block[0] > (verbose ? 0 : 1)) _digits[block[0] - 1],
       if (block[0] > 0) _hundred,
       if (block[1] > 0) _tengits[block[1] - 1],
       if (block[2] > 0) _digits[block[2] - 1],
@@ -110,7 +114,10 @@ extension WrittenOut on int {
   /// the number. For example `1234` must be `[[0, 0, 1], [2, 3, 4]]`. Notice
   /// that the first block might need to be padded with zeros to be of the right
   /// length.
-  static String _blocksToWord(List<List<int>> blocks) {
+  ///
+  /// By setting [verbose] to `true`, otherwise optional words are included in
+  /// the output (e.g. the word for "one" in "one thousand ...").
+  static String _blocksToWord(List<List<int>> blocks, [bool verbose = false]) {
     assert(
       blocks.any((block) => block.length == 3),
       'Each block in the passed in blocks must contain exactly 3 elements.',
@@ -131,7 +138,11 @@ extension WrittenOut on int {
     );
 
     // Get the corresponding words for each block in the given blocks.
-    final List<List<String>> blockWords = blocks.map(_blockToWords).toList();
+    final List<List<String>> blockWords = blocks
+        .map(
+          (block) => _blockToWords(block, verbose),
+        )
+        .toList();
 
     // If there is only one empty block, the number must be zero.
     if (blockWords.maybeOnly?.isEmpty == true) {
@@ -159,7 +170,7 @@ extension WrittenOut on int {
           // be mentioned that it is just one, as that is implied (i.e.
           // "thousand ..." is sufficient). The one exception is the unit
           // "... one", which always needs to be mentioned.
-          if (block.maybeOnly != _digits[0] || index == 0) {
+          if (block.maybeOnly != _digits[0] || index == 0 || verbose) {
             words.insertAll(0, block);
           }
         },
@@ -188,5 +199,21 @@ extension WrittenOut on int {
           start: GroupingStart.end,
           leftoverHandling: const GroupingLeftoverHandling.pad(0),
         ),
+      );
+
+  /// Return the verbosely written out name for this number *in turkish*.
+  ///
+  /// By using this as opposed to [writtenOut], otherwise optional words are
+  /// included in the output (e.g. the word for "one" in "one hundred ..." or
+  /// "one thousand...").
+  ///
+  /// This ignores the sign of the number.
+  String get writtenOutVerbosely => _blocksToWord(
+        digits.group(
+          3,
+          start: GroupingStart.end,
+          leftoverHandling: const GroupingLeftoverHandling.pad(0),
+        ),
+        true,
       );
 }
