@@ -1,3 +1,5 @@
+import 'package:sayilar/extensions/normalize.dart';
+
 /// An abstract base class for textual questions to be asked the user.
 abstract class Question {
   /// Abstract `const` constructor enabling `const` child class constructors.
@@ -13,11 +15,11 @@ abstract class Question {
   ///
   /// By default, the given [answer] will be deemed correct, if and only if it
   /// is equal to the ideal [Question.answer] letter by letter (ignoring casing
-  /// and leading and trailing white space).
+  /// and whitespace, both leading, trailing and between the words).
   ///
   /// Implementing classes may override this method in order to customize its
   /// behavior.
   bool grade(String answer) {
-    return answer.trim().toLowerCase() == this.answer.trim().toLowerCase();
+    return answer.normalize() == this.answer.normalize();
   }
 }
