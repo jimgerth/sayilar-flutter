@@ -3,6 +3,7 @@ import 'package:flutter/material.dart' hide Brightness;
 
 import 'package:sayilar/model/brightness.dart';
 import 'package:sayilar/model/exercises/calculate_exercise.dart';
+import 'package:sayilar/model/exercises/random_exercise.dart';
 import 'package:sayilar/model/exercises/recognize_exercise.dart';
 import 'package:sayilar/model/exercises/translate_exercise.dart';
 import 'package:sayilar/widgets/topic_selector.dart';
@@ -76,25 +77,37 @@ class SayilarState extends State<Sayilar> {
         ),
         body: Center(
           child: TopicSelector(
-            topics: const [
-              ExerciseTopic(
+            topics: [
+              const ExerciseTopic(
                 icon: Icons.visibility,
                 title: 'Recognize',
                 subtitle: 'on iki → *12*',
                 exercise: RecognizeExercise(),
               ),
-              ExerciseTopic(
+              const ExerciseTopic(
                 icon: Icons.edit,
                 title: 'Translate',
                 subtitle: '12 → *on iki*',
                 exercise: TranslateExercise(),
               ),
-              ExerciseTopic(
+              const ExerciseTopic(
                 icon: Icons.calculate,
                 title: 'Calculate',
                 subtitle: 'bir + iki = *üç*',
                 exercise: CalculateExercise(),
               ),
+              ExerciseTopic(
+                icon: Icons.shuffle,
+                title: 'Random',
+                subtitle: 'Practice *everything*!',
+                exercise: RandomExercise(
+                  exercises: const [
+                    RecognizeExercise(),
+                    TranslateExercise(),
+                    CalculateExercise(),
+                  ],
+                ),
+              )
             ],
           ),
         ),
