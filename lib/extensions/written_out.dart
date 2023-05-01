@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 
 import 'package:sayilar/extensions/digits.dart';
 import 'package:sayilar/extensions/group.dart';
-import 'package:sayilar/extensions/maybe_only.dart';
+import 'package:sayilar/extensions/iterable_access.dart';
 
 /// An [Exception] for when a [number] is too big to be [WrittenOut].
 ///
