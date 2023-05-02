@@ -78,6 +78,8 @@ class SayilarState extends State<Sayilar> {
         body: Center(
           child: TopicSelector(
             topics: [
+              // FIXME: These three topics should probably be moved into a
+              // "Numbers" DirectoryTopic once more exercises are added.
               const ExerciseTopic(
                 icon: Icons.visibility,
                 title: 'Recognize',
