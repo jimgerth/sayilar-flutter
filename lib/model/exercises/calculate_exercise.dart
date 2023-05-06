@@ -19,23 +19,35 @@ class CalculateExercise extends Exercise<CalculateQuestion> {
     // general, the numbers for the more difficult operations (multiplication
     // for example) should be smaller and thus are generated with a smaller
     // variance.
-    final num variance = pow(
-      () {
-        switch (operation) {
-          case Operation.addition:
-            return 60;
-          case Operation.subtraction:
-            return 50;
-          case Operation.multiplication:
-            return 10;
-        }
-      }(),
-      2,
-    );
+    final num variance;
+    final Set<int> avoid;
+    switch (operation) {
+      case Operation.addition:
+        variance = pow(60, 2);
+        avoid = {0};
+        break;
+      case Operation.subtraction:
+        variance = pow(50, 2);
+        avoid = {0};
+        break;
+      case Operation.multiplication:
+        variance = pow(10, 2);
+        avoid = {0, 1};
+        break;
+    }
+
+    // Generate a random number with the given variance, avoiding some numbers.
+    int generate(num variance, [Set<int> avoid = const {}]) {
+      int number;
+      do {
+        number = Normal.generate(1, variance: variance)[0].round().abs();
+      } while (avoid.contains(number));
+      return number;
+    }
 
     // Generate the two numbers.
-    final int a = Normal.generate(1, variance: variance)[0].round().abs();
-    final int b = Normal.generate(1, variance: variance)[0].round().abs();
+    final int a = generate(variance, avoid);
+    final int b = generate(variance, avoid);
 
     // Create the next calculate question.
     return CalculateQuestion(
