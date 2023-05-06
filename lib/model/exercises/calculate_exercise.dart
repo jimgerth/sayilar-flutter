@@ -36,9 +36,18 @@ class CalculateExercise extends Exercise<CalculateQuestion> {
         break;
     }
 
+    // Generate a random number with the given variance, avoiding some numbers.
+    int generate(num variance, [Set<int> avoid = const {}]) {
+      int number;
+      do {
+        number = Normal.generate(1, variance: variance)[0].round().abs();
+      } while (avoid.contains(number));
+      return number;
+    }
+
     // Generate the two numbers.
-    final int a = Normal.generate(1, variance: variance)[0].round().abs();
-    final int b = Normal.generate(1, variance: variance)[0].round().abs();
+    final int a = generate(variance, avoid);
+    final int b = generate(variance, avoid);
 
     // Create the next calculate question.
     return CalculateQuestion(
