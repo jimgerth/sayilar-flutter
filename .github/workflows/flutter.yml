@@ -34,7 +34,7 @@ jobs:
     - run: dart format --set-exit-if-changed .
 
     # Check for any improperly sorted imports in the code.
-    - run: flutter pub run import_sorter:main --exit-if-changed
+    - run: dart run import_sorter:main --exit-if-changed
     
     # Statically analyze the dart code for any errors.
     - run: flutter analyze

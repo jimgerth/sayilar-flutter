@@ -34,36 +34,20 @@ class SayilarState extends State<Sayilar> {
 
     return MaterialApp(
       title: 'Sayılar',
-      theme: () {
-        switch (brightness) {
-          case Brightness.system:
-          case Brightness.light:
-            return ThemeData(
-              colorSchemeSeed: colorSchemeSeed,
-              brightness: material.Brightness.light,
-              useMaterial3: true,
-            );
-          case Brightness.dark:
-            return ThemeData(
+      theme: ThemeData(
+        colorSchemeSeed: colorSchemeSeed,
+        brightness: brightness == Brightness.dark
+            ? material.Brightness.dark
+            : material.Brightness.light,
+        useMaterial3: true,
+      ),
+      darkTheme: brightness == Brightness.system
+          ? ThemeData(
               colorSchemeSeed: colorSchemeSeed,
               brightness: material.Brightness.dark,
               useMaterial3: true,
-            );
-        }
-      }(),
-      darkTheme: () {
-        switch (brightness) {
-          case Brightness.system:
-            return ThemeData(
-              colorSchemeSeed: colorSchemeSeed,
-              brightness: material.Brightness.dark,
-              useMaterial3: true,
-            );
-          case Brightness.light:
-          case Brightness.dark:
-            return null;
-        }
-      }(),
+            )
+          : null,
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Sayılar'),

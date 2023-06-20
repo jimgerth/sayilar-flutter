@@ -26,14 +26,11 @@ enum Operation {
 
   /// Returns the result of applying this mathematical operation to two numbers.
   int apply(int a, int b) {
-    switch (this) {
-      case Operation.addition:
-        return a + b;
-      case Operation.subtraction:
-        return a - b;
-      case Operation.multiplication:
-        return a * b;
-    }
+    return switch (this) {
+      Operation.addition => a + b,
+      Operation.subtraction => a - b,
+      Operation.multiplication => a * b,
+    };
   }
 }
 
