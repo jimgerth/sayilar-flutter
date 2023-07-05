@@ -5,7 +5,9 @@ import 'package:sayilar/model/brightness.dart';
 import 'package:sayilar/model/exercises/calculate_exercise.dart';
 import 'package:sayilar/model/exercises/random_exercise.dart';
 import 'package:sayilar/model/exercises/recognize_exercise.dart';
+import 'package:sayilar/model/exercises/recognize_time_exercise.dart';
 import 'package:sayilar/model/exercises/translate_exercise.dart';
+import 'package:sayilar/model/exercises/translate_time_exercise.dart';
 import 'package:sayilar/widgets/topic_selector.dart';
 import 'package:sayilar/widgets/topics/directory_topic.dart';
 import 'package:sayilar/widgets/topics/exercise_topic.dart';
@@ -105,6 +107,40 @@ class SayilarState extends State<Sayilar> {
                     ],
                   ],
                 ),
+                DirectoryTopic(
+                  icon: Icons.schedule,
+                  title: 'Time',
+                  subtitle: 'Tell the time',
+                  topicGroups: [
+                    [
+                      const ExerciseTopic(
+                        icon: Icons.visibility,
+                        title: 'Recognize',
+                        subtitle: 'saat on üç → *13:00*',
+                        exercise: RecognizeTimeExercise(),
+                      ),
+                      const ExerciseTopic(
+                        icon: Icons.edit,
+                        title: 'Translate',
+                        subtitle: '13:00 → *saat on üç*',
+                        exercise: TranslateTimeExercise(),
+                      ),
+                    ],
+                    [
+                      ExerciseTopic(
+                        icon: Icons.shuffle,
+                        title: 'Random',
+                        subtitle: 'All *time* exercises!',
+                        exercise: RandomExercise(
+                          exercises: const [
+                            RecognizeTimeExercise(),
+                            TranslateTimeExercise(),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ],
+                ),
               ],
               [
                 ExerciseTopic(
@@ -116,6 +152,8 @@ class SayilarState extends State<Sayilar> {
                       RecognizeExercise(),
                       TranslateExercise(),
                       CalculateExercise(),
+                      RecognizeTimeExercise(),
+                      TranslateTimeExercise(),
                     ],
                   ),
                 ),
