@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:sayilar/model/exercises/exercise.dart';
 import 'package:sayilar/model/questions/question.dart';
 
@@ -14,8 +16,11 @@ class RandomExercise extends Exercise<Question> {
   /// All the available exercises for selecting [Question]s from.
   final List<Exercise> exercises;
 
+  /// A random number generator for selecting a random exercise.
+  static final Random _random = Random();
+
   @override
   Question nextQuestion() {
-    return (List.from(exercises)..shuffle()).first.nextQuestion();
+    return exercises[_random.nextInt(exercises.length)].nextQuestion();
   }
 }
