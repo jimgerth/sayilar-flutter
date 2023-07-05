@@ -7,6 +7,7 @@ import 'package:sayilar/model/exercises/random_exercise.dart';
 import 'package:sayilar/model/exercises/recognize_exercise.dart';
 import 'package:sayilar/model/exercises/translate_exercise.dart';
 import 'package:sayilar/widgets/topic_selector.dart';
+import 'package:sayilar/widgets/topics/directory_topic.dart';
 import 'package:sayilar/widgets/topics/exercise_topic.dart';
 
 void main() {
@@ -61,39 +62,64 @@ class SayilarState extends State<Sayilar> {
         ),
         body: Center(
           child: TopicSelector(
-            topics: [
-              // FIXME: These three topics should probably be moved into a
-              // "Numbers" DirectoryTopic once more exercises are added.
-              const ExerciseTopic(
-                icon: Icons.visibility,
-                title: 'Recognize',
-                subtitle: 'on iki → *12*',
-                exercise: RecognizeExercise(),
-              ),
-              const ExerciseTopic(
-                icon: Icons.edit,
-                title: 'Translate',
-                subtitle: '12 → *on iki*',
-                exercise: TranslateExercise(),
-              ),
-              const ExerciseTopic(
-                icon: Icons.calculate,
-                title: 'Calculate',
-                subtitle: 'bir + iki = *üç*',
-                exercise: CalculateExercise(),
-              ),
-              ExerciseTopic(
-                icon: Icons.shuffle,
-                title: 'Random',
-                subtitle: 'Practice *everything*!',
-                exercise: RandomExercise(
-                  exercises: const [
-                    RecognizeExercise(),
-                    TranslateExercise(),
-                    CalculateExercise(),
+            topicGroups: [
+              [
+                DirectoryTopic(
+                  icon: Icons.numbers,
+                  title: 'Numbers',
+                  subtitle: 'Practice numbers',
+                  topicGroups: [
+                    const [
+                      ExerciseTopic(
+                        icon: Icons.visibility,
+                        title: 'Recognize',
+                        subtitle: 'on iki → *12*',
+                        exercise: RecognizeExercise(),
+                      ),
+                      ExerciseTopic(
+                        icon: Icons.edit,
+                        title: 'Translate',
+                        subtitle: '12 → *on iki*',
+                        exercise: TranslateExercise(),
+                      ),
+                      ExerciseTopic(
+                        icon: Icons.calculate,
+                        title: 'Calculate',
+                        subtitle: 'bir + iki = *üç*',
+                        exercise: CalculateExercise(),
+                      ),
+                    ],
+                    [
+                      ExerciseTopic(
+                        icon: Icons.shuffle,
+                        title: 'Random',
+                        subtitle: 'All *numbers* exercises!',
+                        exercise: RandomExercise(
+                          exercises: const [
+                            RecognizeExercise(),
+                            TranslateExercise(),
+                            CalculateExercise(),
+                          ],
+                        ),
+                      ),
+                    ],
                   ],
                 ),
-              )
+              ],
+              [
+                ExerciseTopic(
+                  icon: Icons.shuffle,
+                  title: 'Random',
+                  subtitle: 'Practice *everything*!',
+                  exercise: RandomExercise(
+                    exercises: const [
+                      RecognizeExercise(),
+                      TranslateExercise(),
+                      CalculateExercise(),
+                    ],
+                  ),
+                ),
+              ],
             ],
           ),
         ),
