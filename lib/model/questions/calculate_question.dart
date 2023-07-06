@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:sayilar/extensions/written_out.dart';
 import 'package:sayilar/model/questions/question.dart';
 
@@ -18,11 +20,14 @@ enum Operation {
   /// The textual sign representing this mathematical operation.
   final String operation;
 
+  /// A random number generator for selecting a random variant.
+  static final Random _random = Random();
+
   @override
   String toString() => operation;
 
   /// Returns one random mathematical operation from all of the possible ones.
-  static Operation get random => (List.from(values)..shuffle()).first;
+  static Operation get random => values[_random.nextInt(values.length)];
 
   /// Returns the result of applying this mathematical operation to two numbers.
   int apply(int a, int b) {
