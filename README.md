@@ -37,8 +37,8 @@ to translate into and write out in Turkish (e.g. _"on iki"_).
 
 ### Calculate
 
-For this exercise, the user is presented with with two numbers written out in
-Turkish and combined with a mathematical opertaion (e.g. _"bir + iki"_).
+For this exercise, the user is presented with two numbers written out in Turkish
+and combined with a mathematical opertaion (e.g. _"bir + iki"_).
 Firstly, the user has to recognize each number to get their respective numerical
 values in order to be able to perform the calculation (e.g. _1 + 2 = 3_).
 Secondly, the user has to translate and write out the answer to the calculation
