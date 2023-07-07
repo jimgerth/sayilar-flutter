@@ -64,6 +64,8 @@ class _ExerciseTopicBodyState
             ),
             style: Theme.of(context).textTheme.bodyLarge,
             focusNode: inputFocus,
+            // Hide the keyboard when tapping outside of the text field.
+            onTapOutside: (_) => inputFocus.unfocus(),
           ),
           Align(
             alignment: Alignment.centerRight,
