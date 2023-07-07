@@ -26,4 +26,7 @@ class RecognizeTimeQuestion extends Question {
 
   @override
   List<String> get alternateAnswers => time.asAlternateStrings;
+
+  @override
+  TextInputType get keyboardType => TextInputType.datetime;
 }
