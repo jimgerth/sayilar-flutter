@@ -22,7 +22,7 @@ class ExerciseTopicBody extends ExerciseTopicBodyBase {
 class _ExerciseTopicBodyState
     extends ExerciseTopicBodyBaseState<ExerciseTopicBody> {
   /// The controller responsible for the input text field.
-  TextEditingController inputController = TextEditingController();
+  final TextEditingController inputController = TextEditingController();
 
   @override
   void dispose() {
