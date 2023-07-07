@@ -24,9 +24,13 @@ class _ExerciseTopicBodyState
   /// The controller responsible for the input text field.
   final TextEditingController inputController = TextEditingController();
 
+  /// The controller responsible for the focus of the input text field.
+  final FocusNode inputFocus = FocusNode();
+
   @override
   void dispose() {
     inputController.dispose();
+    inputFocus.dispose();
 
     super.dispose();
   }
@@ -59,6 +63,7 @@ class _ExerciseTopicBodyState
               () => inputController.text = '',
             ),
             style: Theme.of(context).textTheme.bodyLarge,
+            focusNode: inputFocus,
           ),
           Align(
             alignment: Alignment.centerRight,
