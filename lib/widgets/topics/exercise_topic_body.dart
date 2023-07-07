@@ -57,6 +57,7 @@ class _ExerciseTopicBodyState
           TextField(
             enabled: inputEnabled,
             controller: inputController,
+            keyboardType: currentQuestion.keyboardType,
             onSubmitted: (answer) => checkAnswer(
               answer,
               // Clear the input text field for the next question.
