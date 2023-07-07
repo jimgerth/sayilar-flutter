@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'package:sayilar/extensions/normalize.dart';
 
 /// An abstract base class for textual questions to be asked the user.
@@ -13,6 +15,14 @@ abstract class Question {
 
   /// A list of formatted strings of alternate answers the user can put in too.
   List<String> get alternateAnswers => [];
+
+  /// The [TextInputType] suitable for inputting answers to `this` question.
+  ///
+  /// Implementing classes can override this to request more specialised
+  /// keyboards for inputting answers (e.g. [TextInputType.number] for number
+  /// related questions). If left `null`, the system's standard keyboard will be
+  /// used.
+  TextInputType? get keyboardType => null;
 
   /// Return whether an [answer] given in response to this question is correct.
   ///

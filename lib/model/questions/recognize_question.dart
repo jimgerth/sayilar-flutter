@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
 import 'package:sayilar/extensions/written_out.dart';
 import 'package:sayilar/model/questions/question.dart';
 
@@ -21,4 +25,14 @@ class RecognizeQuestion extends Question {
 
   @override
   String get answer => number.toString();
+
+  @override
+  TextInputType get keyboardType => TextInputType.numberWithOptions(
+        // FIXME: As iOS does not support a "Done" button on its numpad
+        // keyboard, this is a workaround to open the normal keyboard starting
+        // in the numbers tab, as it has a "Done" button, which is deemed more
+        // important for a good user experience than having the more specialised
+        // numpad keyboard.
+        signed: Platform.isIOS,
+      );
 }
