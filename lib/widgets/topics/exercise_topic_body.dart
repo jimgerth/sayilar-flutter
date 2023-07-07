@@ -22,11 +22,15 @@ class ExerciseTopicBody extends ExerciseTopicBodyBase {
 class _ExerciseTopicBodyState
     extends ExerciseTopicBodyBaseState<ExerciseTopicBody> {
   /// The controller responsible for the input text field.
-  TextEditingController inputController = TextEditingController();
+  final TextEditingController inputController = TextEditingController();
+
+  /// The controller responsible for the focus of the input text field.
+  final FocusNode inputFocus = FocusNode();
 
   @override
   void dispose() {
     inputController.dispose();
+    inputFocus.dispose();
 
     super.dispose();
   }
@@ -59,6 +63,9 @@ class _ExerciseTopicBodyState
               () => inputController.text = '',
             ),
             style: Theme.of(context).textTheme.bodyLarge,
+            focusNode: inputFocus,
+            // Hide the keyboard when tapping outside of the text field.
+            onTapOutside: (_) => inputFocus.unfocus(),
           ),
           Align(
             alignment: Alignment.centerRight,
