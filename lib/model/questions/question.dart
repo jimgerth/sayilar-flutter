@@ -24,6 +24,13 @@ abstract class Question {
   /// used.
   TextInputType? get keyboardType => null;
 
+  /// Whether to show a time picker for inputting answers to `this` question.
+  ///
+  /// Implementing classes can override this to request a time picker to be
+  /// shown for inputting answers. If left `false`, no time picker will be
+  /// shown.
+  bool get showTimePicker => false;
+
   /// Return whether an [answer] given in response to this question is correct.
   ///
   /// By default, the given [answer] will be deemed correct, if and only if it
