@@ -29,4 +29,7 @@ class RecognizeTimeQuestion extends Question {
 
   @override
   TextInputType get keyboardType => TextInputType.datetime;
+
+  @override
+  bool get showTimePicker => true;
 }

@@ -115,10 +115,16 @@ abstract class ExerciseTopicBodyBaseState<T extends ExerciseTopicBodyBase>
   /// Notify the user about whether the answer they put in was correct or not by
   /// showing a [SnackBar]. Proceed to the next question when ther user taps the
   /// _Next_ button or automatically after the [cooldownDuration] (which can be
-  /// delayed by holding down on the [SnackBar]). If any user interface state
-  /// needs to be updated when proceeding to the next question, this can be done
-  /// in [onNextQuestion].
-  void checkAnswer(String answer, [VoidCallback? onNextQuestion]) async {
+  /// delayed by holding down on the [SnackBar]).
+  ///
+  /// If any user interface state needs to be updated when proceeding to the
+  /// next question, this can be done in [onNextQuestion]. This is provided with
+  /// the [Question] for which [checkAnswer] has been called and the [Question]
+  /// that will become the [currentQuestion] after that one.
+  void checkAnswer(
+    String answer, [
+    Function(Question, Question)? onNextQuestion,
+  ]) async {
     // Disable the text field for further input during the cooldown.
     setState(() => _inputEnabled = false);
 
@@ -233,15 +239,17 @@ abstract class ExerciseTopicBodyBaseState<T extends ExerciseTopicBodyBase>
       // Reset the cooldown timer.
       _cooldown.reset();
 
+      final Question nextQuestion = exercise.nextQuestion();
+
       // Run the handler for when the next question is loaded.
-      onNextQuestion?.call();
+      onNextQuestion?.call(currentQuestion, nextQuestion);
 
       setState(() {
         // Enable the text field again for the next question.
         _inputEnabled = true;
 
         // Actually load the next question.
-        _currentQuestion = exercise.nextQuestion();
+        _currentQuestion = nextQuestion;
       });
     }
   }
