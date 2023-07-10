@@ -1,0 +1,154 @@
+{
+    "@@locale": "en",
+    "numbersTitle": "Numbers",
+    "@numbersTitle": {
+        "description": "The title of the directory containing the number exercises"
+    },
+    "numbersSubtitle": "Practice numbers",
+    "@numbersSubtitle": {
+        "description": "The subtitle of the directory containing the number exercises"
+    },
+    "recognizeTitle": "Recognize",
+    "@recognizeTitle": {
+        "description": "The title of the exercise for recognizing numbers"
+    },
+    "translateTitle": "Translate",
+    "@translateTitle": {
+        "description": "The title of the exercise for translating numbers"
+    },
+    "calculateTitle": "Calculate",
+    "@calculateTitle": {
+        "description": "The title of the exercise for calculating numbers"
+    },
+    "randomNumbersTitle": "Random",
+    "@randomNumbersTitle": {
+        "description": "The title of the random exercise shuffling all number exercises"
+    },
+    "randomNumbersSubtitle": "All *numbers* exercises!",
+    "@randomNumbersSubtitle": {
+        "description": "The subtitle of the random exercise shuffling all number exercises"
+    },
+    "timeTitle": "Time",
+    "@timeTitle": {
+        "description": "The title of the directory containing the time exercises"
+    },
+    "timeSubtitle": "Tell the time",
+    "@timeSubtitle": {
+        "description": "The subtitle of the directory containing the time exercises"
+    },
+    "recognizeTimeTitle": "Recognize",
+    "@recognizeTimeTitle": {
+        "description": "The title of the exercise for recognizing times"
+    },
+    "translateTimeTitle": "Translate",
+    "@translateTimeTitle": {
+        "description": "The title of the exercise for translating times"
+    },
+    "randomTimeTitle": "Random",
+    "@randomTimeTitle": {
+        "description": "The title of the random exercise shuffling all the time exercises"
+    },
+    "randomTimeSubtitle": "All *time* exercises!",
+    "@randomTimeSubtitle": {
+        "description": "The subtitle of the random exercise shuffling all the time exercises"
+    },
+    "randomTitle": "Random",
+    "@randomTitle": {
+        "description": "The title of the random exercise shuffling all exercises"
+    },
+    "randomSubtitle": "Practice *everything*!",
+    "@randomSubtitle": {
+        "description": "The subtitle of the random exercise shuffling all exercises"
+    },
+    "recognizeQuestion": "What number is *{number}*?",
+    "@recognizeQuestion": {
+        "description": "The question shown to the user in the recognize numbers exercise",
+        "placeholders": {
+            "number": {
+                "type": "String",
+                "example": "twelve"
+            }
+        }
+    },
+    "translateQuestion": "How do you write *{number}*?",
+    "@translateQuestion": {
+        "description": "The question shown to the user in the translate numbers exercise",
+        "placeholders": {
+            "number": {
+                "type": "String",
+                "example": "12"
+            }
+        }
+    },
+    "calculateQuestion": "How do you write the answer to *{a} {operation} {b}*?",
+    "@calculateQuestion": {
+        "description": "The question shown to the user in the calculate numbers exercise",
+        "placeholders": {
+            "a": {
+                "type": "String",
+                "example": "one"
+            },
+            "operation": {
+                "type": "String",
+                "example": "+"
+            },
+            "b": {
+                "type": "String",
+                "example": "two"
+            }
+        }
+    },
+    "recognizeTimeQuestion": "What time is *{time}*?",
+    "@recognizeTimeQuestion": {
+        "description": "The question shown to the user in the recognize time exercise",
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "example": "twelve o'clock'"
+            }
+        }
+    },
+    "translateTimeQuestion": "How do you write *{time}*?",
+    "@translateTimeQuestion": {
+        "description": "The question shown to the user in the translate time exercise",
+        "placeholders": {
+            "time": {
+                "type": "String",
+                "example": "12:00"
+            }
+        }
+    },
+    "check": "Check",
+    "@check": {
+        "description": "The text of the button for checking the answer to a question"
+    },
+    "correct": "Correct!",
+    "@correct": {
+        "description": "The message shown to the user after entering a correct answer"
+    },
+    "wrong": "Wrong! The correct answer is *{correctAnswer}*.",
+    "@wrong": {
+        "description": "The message shown to the user after entering a wrong answer",
+        "placeholders": {
+            "correctAnswer": {
+                "type": "String"
+            }
+        }
+    },
+    "next": "Next",
+    "@next": {
+        "description": "The text of the button for proceeding to the next question"
+    },
+    "systemBrightnessTooltip": "Follow system brightness",
+    "@systemBrightnessTooltip": {
+        "description": "The tooltip for the brightness button before switching to the system brightness"
+    },
+    "darkModeTooltip": "Switch to dark mode",
+    "@darkModeTooltip": {
+        "description": "The tooltip for the brightness button before switching to dark mode"
+    },
+    "lightModeTooltip": "Switch to light mode",
+    "@lightModeTooltip": {
+        "description": "The tooltip for the brightness button before switching to light mode"
+    }
+}
