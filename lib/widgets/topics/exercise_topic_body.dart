@@ -91,7 +91,7 @@ class _ExerciseTopicBodyState
     final TimeOfDay? time = await material.showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
-      helpText: currentQuestion.question.replaceAll('*', ''),
+      helpText: currentQuestion.question(context).replaceAll('*', ''),
       builder: (context, child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
@@ -122,7 +122,7 @@ class _ExerciseTopicBodyState
               vertical: 24.0,
             ),
             child: Text(
-              currentQuestion.question,
+              currentQuestion.question(context),
               style: Theme.of(context).textTheme.bodyLarge,
             ).formatBold(),
           ),
