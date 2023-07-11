@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/translations.dart';
+
 import 'package:sayilar/extensions/written_out.dart';
 import 'package:sayilar/model/questions/question.dart';
 
@@ -21,7 +23,10 @@ class RecognizeQuestion extends Question {
   final int number;
 
   @override
-  String get question => 'What number is *${number.writtenOut}*?';
+  String question(BuildContext context) =>
+      Translations.of(context).recognizeQuestion(
+        number.writtenOut,
+      );
 
   @override
   String get answer => number.toString();

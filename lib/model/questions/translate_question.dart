@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/translations.dart';
+
 import 'package:sayilar/extensions/written_out.dart';
 import 'package:sayilar/model/questions/question.dart';
 
@@ -17,7 +21,10 @@ class TranslateQuestion extends Question {
   final int number;
 
   @override
-  String get question => 'How do you write *$number*?';
+  String question(BuildContext context) =>
+      Translations.of(context).translateQuestion(
+        number.toString(),
+      );
 
   @override
   String get answer => number.writtenOut;
