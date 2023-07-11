@@ -220,7 +220,7 @@ abstract class ExerciseTopicBodyBaseState<T extends ExerciseTopicBodyBase>
                                     .actionTextColor ??
                                 Theme.of(context).colorScheme.inversePrimary,
                           ),
-                          child: const Text('Next →'),
+                          child: Text('${Translations.of(context).next} →'),
                         ),
                       ),
                     ],
