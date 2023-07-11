@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/translations.dart';
+
 import 'package:sayilar/extensions/format_bold.dart';
 import 'package:sayilar/model/exercises/exercise.dart';
 import 'package:sayilar/model/questions/question.dart';
@@ -197,8 +199,10 @@ abstract class ExerciseTopicBodyBaseState<T extends ExerciseTopicBodyBase>
                           // Show the user whether their answer was correct or
                           // wrong, along with the intended answer in that case.
                           currentQuestion.grade(answer)
-                              ? 'Correct!'
-                              : 'Wrong! The correct answer is *${currentQuestion.answer}*.',
+                              ? Translations.of(context).correct
+                              : Translations.of(context).wrong(
+                                  currentQuestion.answer,
+                                ),
                         ).formatBold(),
                       ),
                       // Same here, mimic the snackbars default padding.
