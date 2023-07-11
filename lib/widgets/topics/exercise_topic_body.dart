@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart' as material show showTimePicker;
 import 'package:flutter/material.dart' hide showTimePicker;
 
+import 'package:flutter_gen/gen_l10n/translations.dart';
+
 import 'package:sayilar/extensions/format_bold.dart';
 import 'package:sayilar/extensions/written_out_time.dart';
 import 'package:sayilar/model/questions/question.dart';
@@ -168,7 +170,9 @@ class _ExerciseTopicBodyState
                           _onNextQuestion,
                         )
                     : null,
-                child: const Text('Check'),
+                child: Text(
+                  Translations.of(context).check,
+                ),
               ),
             ),
           ),
