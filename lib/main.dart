@@ -64,7 +64,7 @@ class SayilarState extends State<Sayilar> {
               actions: <Widget>[
                 IconButton(
                   icon: Icon(brightness.next.icon),
-                  tooltip: brightness.next.tooltip,
+                  tooltip: brightness.next.tooltip(context),
                   onPressed: () => setState(() => brightness = brightness.next),
                 ),
               ],
