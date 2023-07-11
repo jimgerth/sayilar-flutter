@@ -75,34 +75,35 @@ class SayilarState extends State<Sayilar> {
                   [
                     DirectoryTopic(
                       icon: Icons.numbers,
-                      title: 'Numbers',
-                      subtitle: 'Practice numbers',
+                      title: Translations.of(context).numbersTitle,
+                      subtitle: Translations.of(context).numbersSubtitle,
                       topicGroups: [
-                        const [
+                        [
                           ExerciseTopic(
                             icon: Icons.visibility,
-                            title: 'Recognize',
+                            title: Translations.of(context).recognizeTitle,
                             subtitle: 'on iki → *12*',
-                            exercise: RecognizeExercise(),
+                            exercise: const RecognizeExercise(),
                           ),
                           ExerciseTopic(
                             icon: Icons.edit,
-                            title: 'Translate',
+                            title: Translations.of(context).translateTitle,
                             subtitle: '12 → *on iki*',
-                            exercise: TranslateExercise(),
+                            exercise: const TranslateExercise(),
                           ),
                           ExerciseTopic(
                             icon: Icons.calculate,
-                            title: 'Calculate',
+                            title: Translations.of(context).calculateTitle,
                             subtitle: 'bir + iki = *üç*',
-                            exercise: CalculateExercise(),
+                            exercise: const CalculateExercise(),
                           ),
                         ],
                         [
                           ExerciseTopic(
                             icon: Icons.shuffle,
-                            title: 'Random',
-                            subtitle: 'All *numbers* exercises!',
+                            title: Translations.of(context).randomNumbersTitle,
+                            subtitle:
+                                Translations.of(context).randomNumbersSubtitle,
                             exercise: RandomExercise(
                               exercises: const [
                                 RecognizeExercise(),
@@ -116,28 +117,29 @@ class SayilarState extends State<Sayilar> {
                     ),
                     DirectoryTopic(
                       icon: Icons.schedule,
-                      title: 'Time',
-                      subtitle: 'Tell the time',
+                      title: Translations.of(context).timeTitle,
+                      subtitle: Translations.of(context).timeSubtitle,
                       topicGroups: [
                         [
-                          const ExerciseTopic(
+                          ExerciseTopic(
                             icon: Icons.visibility,
-                            title: 'Recognize',
+                            title: Translations.of(context).recognizeTimeTitle,
                             subtitle: 'saat on üç → *13:00*',
-                            exercise: RecognizeTimeExercise(),
+                            exercise: const RecognizeTimeExercise(),
                           ),
-                          const ExerciseTopic(
+                          ExerciseTopic(
                             icon: Icons.edit,
-                            title: 'Translate',
+                            title: Translations.of(context).translateTimeTitle,
                             subtitle: '13:00 → *saat on üç*',
-                            exercise: TranslateTimeExercise(),
+                            exercise: const TranslateTimeExercise(),
                           ),
                         ],
                         [
                           ExerciseTopic(
                             icon: Icons.shuffle,
-                            title: 'Random',
-                            subtitle: 'All *time* exercises!',
+                            title: Translations.of(context).randomTimeTitle,
+                            subtitle:
+                                Translations.of(context).randomTimeSubtitle,
                             exercise: RandomExercise(
                               exercises: const [
                                 RecognizeTimeExercise(),
@@ -152,8 +154,8 @@ class SayilarState extends State<Sayilar> {
                   [
                     ExerciseTopic(
                       icon: Icons.shuffle,
-                      title: 'Random',
-                      subtitle: 'Practice *everything*!',
+                      title: Translations.of(context).randomTitle,
+                      subtitle: Translations.of(context).randomSubtitle,
                       exercise: RandomExercise(
                         exercises: const [
                           RecognizeExercise(),
