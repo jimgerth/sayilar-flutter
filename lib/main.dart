@@ -1,7 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material show Brightness;
 import 'package:flutter/material.dart' hide Brightness;
 
 import 'package:flutter_gen/gen_l10n/translations.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'package:sayilar/model/brightness.dart';
 import 'package:sayilar/model/exercises/calculate_exercise.dart';
@@ -14,7 +17,14 @@ import 'package:sayilar/widgets/topic_selector.dart';
 import 'package:sayilar/widgets/topics/directory_topic.dart';
 import 'package:sayilar/widgets/topics/exercise_topic.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getApplicationSupportDirectory(),
+  );
+
   runApp(const Sayilar());
 }
 
