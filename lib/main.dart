@@ -14,6 +14,7 @@ import 'package:sayilar/model/exercises/recognize_exercise.dart';
 import 'package:sayilar/model/exercises/recognize_time_exercise.dart';
 import 'package:sayilar/model/exercises/translate_exercise.dart';
 import 'package:sayilar/model/exercises/translate_time_exercise.dart';
+import 'package:sayilar/widgets/sayilar_app_bar.dart';
 import 'package:sayilar/widgets/topic_selector.dart';
 import 'package:sayilar/widgets/topics/directory_topic.dart';
 import 'package:sayilar/widgets/topics/exercise_topic.dart';
@@ -65,22 +66,8 @@ class Sayilar extends StatelessWidget {
               // Get a BuildContext, that includes the Translations.
               builder: (context) {
                 return Scaffold(
-                  appBar: AppBar(
-                    title: const Text('Sayılar'),
-                    actions: <Widget>[
-                      BlocBuilder<BrightnessBloc, Brightness>(
-                        builder: (context, brightness) {
-                          return IconButton(
-                            icon: Icon(brightness.next.icon),
-                            tooltip: brightness.next.tooltip(context),
-                            onPressed: () =>
-                                BlocProvider.of<BrightnessBloc>(context).add(
-                              brightness.next,
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                  appBar: const SayilarAppBar(
+                    title: 'Sayılar',
                   ),
                   body: Center(
                     child: TopicSelector(
