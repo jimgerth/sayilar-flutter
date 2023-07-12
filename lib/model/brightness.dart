@@ -20,7 +20,7 @@ enum Brightness {
   final IconData icon;
 
   /// The first brightness variant to be used for the app on startup.
-  static Brightness first = Brightness.system;
+  static const Brightness first = Brightness.system;
 
   /// Return the brightness variant coming after `this` one.
   Brightness get next {
