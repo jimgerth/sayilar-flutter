@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart' as material show showTimePicker;
 import 'package:flutter/material.dart' hide showTimePicker;
 
+import 'package:flutter_gen/gen_l10n/translations.dart';
+
 import 'package:sayilar/extensions/format_bold.dart';
 import 'package:sayilar/extensions/written_out_time.dart';
 import 'package:sayilar/model/questions/question.dart';
@@ -91,7 +93,7 @@ class _ExerciseTopicBodyState
     final TimeOfDay? time = await material.showTimePicker(
       context: context,
       initialTime: TimeOfDay.now(),
-      helpText: currentQuestion.question.replaceAll('*', ''),
+      helpText: currentQuestion.question(context).replaceAll('*', ''),
       builder: (context, child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
@@ -122,7 +124,7 @@ class _ExerciseTopicBodyState
               vertical: 24.0,
             ),
             child: Text(
-              currentQuestion.question,
+              currentQuestion.question(context),
               style: Theme.of(context).textTheme.bodyLarge,
             ).formatBold(),
           ),
@@ -168,7 +170,9 @@ class _ExerciseTopicBodyState
                           _onNextQuestion,
                         )
                     : null,
-                child: const Text('Check'),
+                child: Text(
+                  Translations.of(context).check,
+                ),
               ),
             ),
           ),

@@ -32,6 +32,9 @@ migrate_working_dir/
 .pub/
 /build/
 
+# Flutter Intl generation related
+missing_translations.json
+
 # Symbolication related
 app.*.symbols
 

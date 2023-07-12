@@ -38,3 +38,9 @@ jobs:
     
     # Statically analyze the dart code for any errors.
     - run: flutter analyze
+
+    # Check for errors in the localization generation.
+    - run: flutter gen-l10n
+
+    # Check for missing translations in the localization.
+    - run: test "$(cat missing_translations.json)" = "{}"

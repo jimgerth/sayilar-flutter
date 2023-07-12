@@ -1,0 +1,6 @@
+arb-dir: lib/translations
+template-arb-file: english.arb
+output-class: Translations
+output-localization-file: translations.dart
+untranslated-messages-file: missing_translations.json
+nullable-getter: false

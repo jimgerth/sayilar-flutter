@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/translations.dart';
+
 import 'package:sayilar/extensions/written_out_time.dart';
 import 'package:sayilar/model/questions/question.dart';
 
@@ -19,7 +21,10 @@ class RecognizeTimeQuestion extends Question {
   final TimeOfDay time;
 
   @override
-  String get question => 'What time is *${time.writtenOut}*?';
+  String question(BuildContext context) =>
+      Translations.of(context).recognizeTimeQuestion(
+        time.writtenOut,
+      );
 
   @override
   String get answer => time.asString;

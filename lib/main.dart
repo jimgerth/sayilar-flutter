@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart' as material show Brightness;
 import 'package:flutter/material.dart' hide Brightness;
 
+import 'package:flutter_gen/gen_l10n/translations.dart';
+
 import 'package:sayilar/model/brightness.dart';
 import 'package:sayilar/model/exercises/calculate_exercise.dart';
 import 'package:sayilar/model/exercises/random_exercise.dart';
@@ -51,116 +53,125 @@ class SayilarState extends State<Sayilar> {
               useMaterial3: true,
             )
           : null,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Sayılar'),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(brightness.next.icon),
-              tooltip: brightness.next.tooltip,
-              onPressed: () => setState(() => brightness = brightness.next),
+      localizationsDelegates: Translations.localizationsDelegates,
+      supportedLocales: Translations.supportedLocales,
+      home: Builder(
+        // Get a BuildContext, that includes the Translations.
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Sayılar'),
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(brightness.next.icon),
+                  tooltip: brightness.next.tooltip(context),
+                  onPressed: () => setState(() => brightness = brightness.next),
+                ),
+              ],
             ),
-          ],
-        ),
-        body: Center(
-          child: TopicSelector(
-            topicGroups: [
-              [
-                DirectoryTopic(
-                  icon: Icons.numbers,
-                  title: 'Numbers',
-                  subtitle: 'Practice numbers',
-                  topicGroups: [
-                    const [
-                      ExerciseTopic(
-                        icon: Icons.visibility,
-                        title: 'Recognize',
-                        subtitle: 'on iki → *12*',
-                        exercise: RecognizeExercise(),
-                      ),
-                      ExerciseTopic(
-                        icon: Icons.edit,
-                        title: 'Translate',
-                        subtitle: '12 → *on iki*',
-                        exercise: TranslateExercise(),
-                      ),
-                      ExerciseTopic(
-                        icon: Icons.calculate,
-                        title: 'Calculate',
-                        subtitle: 'bir + iki = *üç*',
-                        exercise: CalculateExercise(),
-                      ),
-                    ],
-                    [
-                      ExerciseTopic(
-                        icon: Icons.shuffle,
-                        title: 'Random',
-                        subtitle: 'All *numbers* exercises!',
-                        exercise: RandomExercise(
-                          exercises: const [
-                            RecognizeExercise(),
-                            TranslateExercise(),
-                            CalculateExercise(),
-                          ],
-                        ),
-                      ),
-                    ],
+            body: Center(
+              child: TopicSelector(
+                topicGroups: [
+                  [
+                    DirectoryTopic(
+                      icon: Icons.numbers,
+                      title: Translations.of(context).numbersTitle,
+                      subtitle: Translations.of(context).numbersSubtitle,
+                      topicGroups: [
+                        [
+                          ExerciseTopic(
+                            icon: Icons.visibility,
+                            title: Translations.of(context).recognizeTitle,
+                            subtitle: 'on iki → *12*',
+                            exercise: const RecognizeExercise(),
+                          ),
+                          ExerciseTopic(
+                            icon: Icons.edit,
+                            title: Translations.of(context).translateTitle,
+                            subtitle: '12 → *on iki*',
+                            exercise: const TranslateExercise(),
+                          ),
+                          ExerciseTopic(
+                            icon: Icons.calculate,
+                            title: Translations.of(context).calculateTitle,
+                            subtitle: 'bir + iki = *üç*',
+                            exercise: const CalculateExercise(),
+                          ),
+                        ],
+                        [
+                          ExerciseTopic(
+                            icon: Icons.shuffle,
+                            title: Translations.of(context).randomNumbersTitle,
+                            subtitle:
+                                Translations.of(context).randomNumbersSubtitle,
+                            exercise: RandomExercise(
+                              exercises: const [
+                                RecognizeExercise(),
+                                TranslateExercise(),
+                                CalculateExercise(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                    DirectoryTopic(
+                      icon: Icons.schedule,
+                      title: Translations.of(context).timeTitle,
+                      subtitle: Translations.of(context).timeSubtitle,
+                      topicGroups: [
+                        [
+                          ExerciseTopic(
+                            icon: Icons.visibility,
+                            title: Translations.of(context).recognizeTimeTitle,
+                            subtitle: 'saat on üç → *13:00*',
+                            exercise: const RecognizeTimeExercise(),
+                          ),
+                          ExerciseTopic(
+                            icon: Icons.edit,
+                            title: Translations.of(context).translateTimeTitle,
+                            subtitle: '13:00 → *saat on üç*',
+                            exercise: const TranslateTimeExercise(),
+                          ),
+                        ],
+                        [
+                          ExerciseTopic(
+                            icon: Icons.shuffle,
+                            title: Translations.of(context).randomTimeTitle,
+                            subtitle:
+                                Translations.of(context).randomTimeSubtitle,
+                            exercise: RandomExercise(
+                              exercises: const [
+                                RecognizeTimeExercise(),
+                                TranslateTimeExercise(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
                   ],
-                ),
-                DirectoryTopic(
-                  icon: Icons.schedule,
-                  title: 'Time',
-                  subtitle: 'Tell the time',
-                  topicGroups: [
-                    [
-                      const ExerciseTopic(
-                        icon: Icons.visibility,
-                        title: 'Recognize',
-                        subtitle: 'saat on üç → *13:00*',
-                        exercise: RecognizeTimeExercise(),
+                  [
+                    ExerciseTopic(
+                      icon: Icons.shuffle,
+                      title: Translations.of(context).randomTitle,
+                      subtitle: Translations.of(context).randomSubtitle,
+                      exercise: RandomExercise(
+                        exercises: const [
+                          RecognizeExercise(),
+                          TranslateExercise(),
+                          CalculateExercise(),
+                          RecognizeTimeExercise(),
+                          TranslateTimeExercise(),
+                        ],
                       ),
-                      const ExerciseTopic(
-                        icon: Icons.edit,
-                        title: 'Translate',
-                        subtitle: '13:00 → *saat on üç*',
-                        exercise: TranslateTimeExercise(),
-                      ),
-                    ],
-                    [
-                      ExerciseTopic(
-                        icon: Icons.shuffle,
-                        title: 'Random',
-                        subtitle: 'All *time* exercises!',
-                        exercise: RandomExercise(
-                          exercises: const [
-                            RecognizeTimeExercise(),
-                            TranslateTimeExercise(),
-                          ],
-                        ),
-                      ),
-                    ],
+                    ),
                   ],
-                ),
-              ],
-              [
-                ExerciseTopic(
-                  icon: Icons.shuffle,
-                  title: 'Random',
-                  subtitle: 'Practice *everything*!',
-                  exercise: RandomExercise(
-                    exercises: const [
-                      RecognizeExercise(),
-                      TranslateExercise(),
-                      CalculateExercise(),
-                      RecognizeTimeExercise(),
-                      TranslateTimeExercise(),
-                    ],
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

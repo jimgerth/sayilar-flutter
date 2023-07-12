@@ -8,7 +8,7 @@ abstract class Question {
   const Question();
 
   /// A formatted string of the question to be shown to the user.
-  String get question;
+  String question(BuildContext context);
 
   /// A formatted string of the correct answer the user is expected to put in.
   String get answer;

@@ -1,5 +1,9 @@
 import 'dart:math';
 
+import 'package:flutter/material.dart';
+
+import 'package:flutter_gen/gen_l10n/translations.dart';
+
 import 'package:sayilar/extensions/written_out.dart';
 import 'package:sayilar/model/questions/question.dart';
 
@@ -66,8 +70,12 @@ class CalculateQuestion extends Question {
   final Operation operation;
 
   @override
-  String get question =>
-      'How do you write the answer to *${a.writtenOut} $operation ${b.writtenOut}*?';
+  String question(BuildContext context) =>
+      Translations.of(context).calculateQuestion(
+        a.writtenOut,
+        operation.toString(),
+        b.writtenOut,
+      );
 
   @override
   String get answer => operation.apply(a, b).writtenOut;
