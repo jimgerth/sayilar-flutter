@@ -10,13 +10,13 @@ Turkish numbers.
 This app has different simple exercises for practicing recognizing and using
 Turkish numbers.
 It aims to be as minimal as possible, as it is only a little side project.
-It arose from myself learning Turkish and wanting a better way of practicing
-their numbers.
+It arose from myself learning Turkish and wanting a better way to practice their
+numbers.
 
 There are still a few improvements and new exercises planned (see the
 [issues](https://github.com/JimGerth/sayilar-flutter/issues)) and eventually
-this app is planned to be available for download, although there is no timeline
-for that.
+this app is planned to be available for download, but there is no timeline for
+that yet.
 
 
 ## Exercises
