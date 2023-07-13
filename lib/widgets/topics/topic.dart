@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:sayilar/extensions/format_bold.dart';
+import 'package:sayilar/widgets/sayilar_app_bar.dart';
 
 /// An abstract base class for any coherent unit of browsable content.
 ///
@@ -72,8 +73,8 @@ abstract class Topic {
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => Scaffold(
-              appBar: AppBar(
-                title: Text(title),
+              appBar: SayilarAppBar(
+                title: title,
               ),
               body: Center(
                 child: buildBody(context),
