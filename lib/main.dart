@@ -11,6 +11,7 @@ import 'package:sayilar/model/brightness.dart';
 import 'package:sayilar/model/exercises/calculate_exercise.dart';
 import 'package:sayilar/model/exercises/random_exercise.dart';
 import 'package:sayilar/model/exercises/recognize_exercise.dart';
+import 'package:sayilar/model/exercises/recognize_ordinal_exercise.dart';
 import 'package:sayilar/model/exercises/recognize_time_exercise.dart';
 import 'package:sayilar/model/exercises/translate_exercise.dart';
 import 'package:sayilar/model/exercises/translate_time_exercise.dart';
@@ -99,6 +100,13 @@ class Sayilar extends StatelessWidget {
                                       Translations.of(context).calculateTitle,
                                   subtitle: 'bir + iki = *üç*',
                                   exercise: const CalculateExercise(),
+                                ),
+                                ExerciseTopic(
+                                  icon: Icons.visibility,
+                                  title: 'Recognize',
+                                      //Translations.of(context).calculateTitle,
+                                  subtitle: 'birinci -> *1st*',
+                                  exercise: const RecognizeOrdinalExercise(),
                                 ),
                               ],
                               [
