@@ -65,4 +65,29 @@ extension Cases on String {
       if (lastVowel != null) Letter(lastVowel.twoWayHarmony) else Vowel.e,
     ].join();
   }
+
+  /// Add the *turkish* ordinal ending to `this` word.
+  String get ordinal {
+    if (isEmpty) {
+      return this;
+    }
+
+    final Letter lastLetter = letters.last;
+    final Vowel lastVowel = letters.whereType<Vowel>().maybeLast ?? Vowel.i;
+
+    if (this == 'üç' || endsWith(' üç')) {
+        return '$thisüncü';
+    }
+
+    return <Letter>[
+      ...letters.withoutLast,
+      if (lastLetter is Consonant) ...[
+        Letter(lastLetter.mutation ?? lastLetter.character),
+        Letter(lastVowel.fourWayHarmony)
+      ] else lastLetter,
+      VoicedConsonant.n,
+      VoicedConsonant.c,
+      Letter(lastVowel.fourWayHarmony),
+    ].join();
+  }
 }
