@@ -85,6 +85,7 @@ class Sayilar extends StatelessWidget {
                                       Translations.of(context).recognizeTitle,
                                   subtitle: 'on iki → *12*',
                                   exercise: const RecognizeExercise(),
+                                  onInfoPressed: () {},
                                 ),
                                 ExerciseTopic(
                                   icon: Icons.edit,
@@ -92,6 +93,7 @@ class Sayilar extends StatelessWidget {
                                       Translations.of(context).translateTitle,
                                   subtitle: '12 → *on iki*',
                                   exercise: const TranslateExercise(),
+                                  onInfoPressed: () {},
                                 ),
                                 ExerciseTopic(
                                   icon: Icons.calculate,
@@ -99,6 +101,7 @@ class Sayilar extends StatelessWidget {
                                       Translations.of(context).calculateTitle,
                                   subtitle: 'bir + iki = *üç*',
                                   exercise: const CalculateExercise(),
+                                  onInfoPressed: () {},
                                 ),
                               ],
                               [
@@ -131,6 +134,7 @@ class Sayilar extends StatelessWidget {
                                       .recognizeTimeTitle,
                                   subtitle: 'saat on üç → *13:00*',
                                   exercise: const RecognizeTimeExercise(),
+                                  onInfoPressed: () {},
                                 ),
                                 ExerciseTopic(
                                   icon: Icons.edit,
@@ -138,6 +142,7 @@ class Sayilar extends StatelessWidget {
                                       .translateTimeTitle,
                                   subtitle: '13:00 → *saat on üç*',
                                   exercise: const TranslateTimeExercise(),
+                                  onInfoPressed: () {},
                                 ),
                               ],
                               [

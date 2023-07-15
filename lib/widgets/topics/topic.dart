@@ -19,6 +19,7 @@ abstract class Topic {
     required this.icon,
     required this.title,
     required this.subtitle,
+    required this.onInfoPressed,
   });
 
   /// An optional iconic representation for this topic.
@@ -30,6 +31,8 @@ abstract class Topic {
   /// An optional, more descriptive subtitle for this topic.
   final String? subtitle;
 
+  final VoidCallback? onInfoPressed;
+
   /// Build the full screen body containing all of the content of this topic.
   Widget buildBody(BuildContext context);
 
@@ -37,51 +40,63 @@ abstract class Topic {
   Widget buildButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12.0),
-      child: ({label, onPressed}) {
-        return icon != null
-            ? ElevatedButton.icon(
-                icon: Icon(
-                  icon,
-                  size: IconTheme.of(context).size != null
-                      ? IconTheme.of(context).size! *
-                          MediaQuery.of(context).textScaleFactor
-                      : null,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          ({label, onPressed}) {
+            return icon != null
+                ? ElevatedButton.icon(
+                    icon: Icon(
+                      icon,
+                      size: IconTheme.of(context).size != null
+                          ? IconTheme.of(context).size! *
+                              MediaQuery.of(context).textScaleFactor
+                          : null,
+                    ),
+                    label: label,
+                    onPressed: onPressed,
+                  )
+                : ElevatedButton(
+                    child: label,
+                    onPressed: onPressed,
+                  );
+          }(
+            label: Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: 4.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  if (subtitle != null) Text(subtitle!).formatBold(),
+                ],
+              ),
+            ),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => Scaffold(
+                  appBar: SayilarAppBar(
+                    title: title,
+                  ),
+                  body: Center(
+                    child: buildBody(context),
+                  ),
                 ),
-                label: label,
-                onPressed: onPressed,
-              )
-            : ElevatedButton(
-                child: label,
-                onPressed: onPressed,
-              );
-      }(
-        label: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 4.0,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                title,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-              if (subtitle != null) Text(subtitle!).formatBold(),
-            ],
-          ),
-        ),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => Scaffold(
-              appBar: SayilarAppBar(
-                title: title,
-              ),
-              body: Center(
-                child: buildBody(context),
               ),
             ),
           ),
-        ),
+          if (onInfoPressed != null)
+          IconButton(
+            onPressed: onInfoPressed,
+            icon: const Icon(Icons.info_outline),
+            color: Theme.of(context).colorScheme.primary,
+            //ElevatedButton(onPressed: () {}, child: Text(''),).defaultStyleOf(context).foregroundColor!.resolve({}),
+          ),
+        ],
       ),
     );
   }

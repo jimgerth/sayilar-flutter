@@ -11,6 +11,7 @@ class ExerciseTopic extends Topic {
     super.icon,
     required super.title,
     super.subtitle,
+    super.onInfoPressed,
     required this.exercise,
   });
 

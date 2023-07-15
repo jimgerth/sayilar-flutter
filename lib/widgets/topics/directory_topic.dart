@@ -15,6 +15,7 @@ class DirectoryTopic extends Topic {
     super.icon,
     required super.title,
     super.subtitle,
+    super.onInfoPressed,
     this.topics,
     this.topicGroups,
   }) : assert(
